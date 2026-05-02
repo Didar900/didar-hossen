@@ -15,16 +15,13 @@
         :root {
             --oracle-red: #f80000;
             --dark-bg: #080808;
+            --card-bg: #111111;
             --glass-bg: rgba(255, 255, 255, 0.05);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: none; /* Default cursor hide */
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -34,175 +31,116 @@
         }
 
         /* --- Custom Cursor --- */
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--oracle-red);
-            position: fixed;
-            top: 0; left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 10000;
-            pointer-events: none;
-        }
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(248, 0, 0, 0.5);
-            position: fixed;
-            top: 0; left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            pointer-events: none;
-            transition: transform 0.15s ease-out;
-        }
+        .cursor-dot { width: 8px; height: 8px; background: var(--oracle-red); position: fixed; transform: translate(-50%, -50%); border-radius: 50%; z-index: 10000; pointer-events: none; }
+        .cursor-outline { width: 40px; height: 40px; border: 2px solid rgba(248, 0, 0, 0.5); position: fixed; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; transition: transform 0.15s ease-out; }
 
-        /* --- Professional Navbar --- */
-        .custom-nav {
-            padding: 20px 0;
-            background: rgba(8, 8, 8, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: var(--transition);
-        }
-        .nav-scrolled {
-            padding: 12px 0;
-            background: #000;
-            border-bottom: 1px solid var(--oracle-red);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-        .logo-icon {
-            width: 35px;
-            height: 35px;
-            background: var(--oracle-red);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            font-weight: 800;
-            color: white;
-            margin-right: 12px;
-            box-shadow: 0 0 15px rgba(248, 0, 0, 0.4);
-        }
-        .logo-text {
-            color: white;
-            font-weight: 700;
-            letter-spacing: 1px;
-            font-size: 1.2rem;
-        }
-
-        .nav-link {
-            color: rgba(255,255,255,0.7) !important;
-            font-weight: 500;
-            margin: 0 15px;
-            position: relative;
-        }
+        /* --- Navbar --- */
+        .custom-nav { padding: 20px 0; background: rgba(8, 8, 8, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: var(--transition); }
+        .nav-scrolled { padding: 12px 0; background: #000; border-bottom: 1px solid var(--oracle-red); }
+        .logo-icon { width: 35px; height: 35px; background: var(--oracle-red); display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 800; color: white; margin-right: 12px; }
+        .nav-link { color: rgba(255,255,255,0.7) !important; font-weight: 500; margin: 0 15px; position: relative; }
         .nav-link:hover { color: var(--oracle-red) !important; }
-        .nav-link::after {
-            content: '';
-            position: absolute; width: 0; height: 2px;
-            bottom: 0; left: 0; background: var(--oracle-red);
-            transition: var(--transition);
-        }
-        .nav-link:hover::after { width: 100%; }
+        .btn-hire { background: var(--oracle-red); color: white !important; padding: 8px 25px !important; border-radius: 50px; border: 2px solid var(--oracle-red); transition: var(--transition); }
 
-        .btn-hire {
-            background: var(--oracle-red);
-            color: white !important;
-            padding: 8px 25px !important;
-            border-radius: 50px;
-            font-weight: 600;
-            border: 2px solid var(--oracle-red);
-            transition: var(--transition);
-        }
-        .btn-hire:hover {
-            background: transparent;
-            box-shadow: 0 0 20px rgba(248, 0, 0, 0.4);
-        }
+        /* --- Sections --- */
+        section { padding: 100px 0; }
+        .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 50px; }
+        .text-gradient { background: linear-gradient(to right, #ffffff, #f80000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            background: radial-gradient(circle at 80% 20%, rgba(248, 0, 0, 0.05) 0%, transparent 40%);
-        }
-        .oracle-line {
-            border-left: 6px solid var(--oracle-red);
-            padding-left: 25px;
-            margin: 30px 0;
-        }
+        /* --- Experience Timeline --- */
+        .exp-card { background: var(--card-bg); border-left: 3px solid var(--oracle-red); padding: 30px; margin-bottom: 20px; transition: var(--transition); }
+        .exp-card:hover { transform: translateX(10px); background: #1a1a1a; }
 
         /* --- Project Cards --- */
-        .project-card {
-            background: var(--glass-bg);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--oracle-red);
-            background: rgba(255,255,255,0.08);
-        }
+        .project-card { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden; transition: var(--transition); position: relative; }
+        .project-card:hover { transform: translateY(-10px); border-color: var(--oracle-red); }
+        .project-img { height: 200px; background: #222; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #333; }
 
-        /* --- Custom Scrollbar --- */
+        /* --- Contact --- */
+        .contact-form input, .contact-form textarea { background: #111; border: 1px solid #333; color: white; padding: 15px; border-radius: 10px; margin-bottom: 20px; width: 100%; }
+        .contact-form input:focus { border-color: var(--oracle-red); outline: none; }
+
+        /* --- Social Links --- */
+        .social-link { width: 50px; height: 50px; background: #111; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: white; margin: 0 10px; transition: var(--transition); font-size: 1.2rem; text-decoration: none; }
+        .social-link:hover { background: var(--oracle-red); transform: translateY(-5px); color: white; }
+
+        /* --- Scrollbar --- */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--dark-bg); }
         ::-webkit-scrollbar-thumb { background: var(--oracle-red); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <!-- Custom Cursor -->
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-nav">
         <div class="container">
-            <a class="logo-container" href="#">
+            <a class="d-flex align-items-center text-decoration-none" href="#home">
                 <div class="logo-icon">O</div>
-                <span class="logo-text">APEX<span class="text-danger">.PRO</span></span>
+                <span class="text-white fw-bold fs-4">APEX<span class="text-danger">.DEV</span></span>
             </a>
-            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                    <li class="nav-item ms-lg-3">
-                        <a class="nav-link btn-hire" href="mailto:contact@example.com">Hire Me</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-3"><a class="nav-link btn-hire" href="#contact">Get In Touch</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Home / Hero Section -->
+    <section id="home" class="vh-100 d-flex align-items-center" style="background: radial-gradient(circle at 90% 10%, rgba(248, 0, 0, 0.1), transparent 40%);">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7 animate__animated animate__fadeInLeft">
-                    <h6 class="text-danger fw-bold text-uppercase mb-3 tracking-widest">Enterprise Web Architect</h6>
-                    <h1 class="display-2 fw-bold mb-4">Building The Future <br> Of <span class="text-danger">Databases.</span></h1>
-                    <div class="oracle-line">
-                        <p class="lead text-secondary">Expert Oracle APEX Developer specializing in high-performance PL/SQL backend systems and modern, responsive frontend interfaces.</p>
+            <div class="row">
+                <div class="col-lg-8 animate__animated animate__fadeInUp">
+                    <h6 class="text-danger fw-bold text-uppercase mb-3">Professional Oracle Developer</h6>
+                    <h1 class="display-1 fw-bold mb-4">I Design & Build <br><span class="text-gradient">Data Ecosystems.</span></h1>
+                    <p class="lead text-secondary mb-5" style="max-width: 600px;">Helping businesses transform complex data into elegant enterprise applications using Oracle APEX, PL/SQL, and Modern Web Stacks.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#projects" class="btn btn-hire btn-lg px-5">My Work</a>
+                        <div class="d-flex align-items-center gap-3 ms-4">
+                            <a href="#" class="social-link"><i class="fa-brands fa-github"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
                     </div>
-                    <div class="mt-5">
-                        <a href="#projects" class="btn btn-hire btn-lg me-3">View Projects</a>
-                        <a href="#" class="text-white text-decoration-none fw-bold"><i class="fa-solid fa-play-circle me-2"></i> Watch Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="bg-black">
+        <div class="container">
+            <h2 class="section-title text-center">My <span class="text-danger">Journey</span></h2>
+            <div class="row g-4 mt-5">
+                <div class="col-md-6">
+                    <div class="exp-card">
+                        <span class="text-danger fw-bold">2022 - Present</span>
+                        <h4 class="mt-2">Senior APEX Developer</h4>
+                        <p class="text-secondary">Enterprise Solutions Ltd.</p>
+                        <ul class="small text-secondary">
+                            <li>Optimized SQL queries reducing load time by 40%.</li>
+                            <li>Lead developer for a Global Supply Chain dashboard.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="exp-card">
+                        <span class="text-danger fw-bold">2020 - 2022</span>
+                        <h4 class="mt-2">Oracle Database Specialist</h4>
+                        <p class="text-secondary">DataFlow Systems</p>
+                        <ul class="small text-secondary">
+                            <li>Managed 10TB+ Oracle Databases.</li>
+                            <li>Automated reporting using PL/SQL packages.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -210,105 +148,93 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-5">
+    <section id="projects">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-end mb-5">
-                <div>
-                    <h2 class="display-5 fw-bold">Recent <span class="text-danger">Logs</span></h2>
-                    <p class="text-secondary">Explore my latest Oracle APEX implementations</p>
-                </div>
-                <a href="#" class="text-danger fw-bold">View All <i class="fa-solid fa-arrow-right"></i></a>
+            <div class="text-center mb-5">
+                <h2 class="section-title">Featured <span class="text-danger">Projects</span></h2>
             </div>
-
             <div class="row g-4">
-                <!-- Card 1 -->
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="project-card p-4">
-                        <div class="d-flex justify-content-between mb-4">
-                            <span class="badge bg-danger">v4.2</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-secondary"></i>
-                        </div>
-                        <h3>E-Commerce Engine</h3>
-                        <p class="text-secondary">Fully automated inventory system with real-time ORDS API integration.</p>
-                        <div class="mt-4">
-                            <span class="small border border-secondary rounded-pill px-3 py-1 me-2">PL/SQL</span>
-                            <span class="small border border-secondary rounded-pill px-3 py-1">APEX 23.2</span>
-                        </div>
+                        <div class="project-img mb-3"><i class="fa-solid fa-chart-line"></i></div>
+                        <h4>FinTech Dashboard</h4>
+                        <p class="small text-secondary">Real-time financial tracking app with APEX 23.x</p>
+                        <a href="#" class="text-danger text-decoration-none small fw-bold">Case Study <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
-                <!-- Card 2 -->
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="project-card p-4">
-                        <div class="d-flex justify-content-between mb-4">
-                            <span class="badge bg-danger">Live</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-secondary"></i>
-                        </div>
-                        <h3>HRMS Portal</h3>
-                        <p class="text-secondary">Enterprise human resource management with advanced dynamic actions.</p>
-                        <div class="mt-4">
-                            <span class="small border border-secondary rounded-pill px-3 py-1 me-2">Bootstrap</span>
-                            <span class="small border border-secondary rounded-pill px-3 py-1">Oracle 19c</span>
-                        </div>
+                        <div class="project-img mb-3"><i class="fa-solid fa-box-open"></i></div>
+                        <h4>Inventory Pro</h4>
+                        <p class="small text-secondary">A complete stock management solution for retail.</p>
+                        <a href="#" class="text-danger text-decoration-none small fw-bold">Case Study <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="project-card p-4">
+                        <div class="project-img mb-3"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h4>Access Control</h4>
+                        <p class="small text-secondary">Biometric integrated security portal via REST APIs.</p>
+                        <a href="#" class="text-danger text-decoration-none small fw-bold">Case Study <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-5 border-top border-secondary mt-5">
-        <div class="container text-center">
-            <div class="fs-3 mb-4">
-                <a href="#" class="text-secondary mx-3 hover-red"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="text-secondary mx-3 hover-red"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#" class="text-secondary mx-3 hover-red"><i class="fa-brands fa-twitter"></i></a>
+    <!-- Contact & Social Section -->
+    <section id="contact" class="bg-black">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <h2 class="section-title mb-4">Let's Work <span class="text-danger">Together.</span></h2>
+                    <p class="text-secondary mb-5">আপনার যদি কোন প্রোজেক্ট বা আইডিয়া থাকে, সরাসরি ইমেইল করতে পারেন অথবা সোশ্যাল মিডিয়ায় নক দিতে পারেন।</p>
+                    
+                    <h5>Address</h5>
+                    <p class="text-secondary">Dhaka, Bangladesh</p>
+                    
+                    <h5>Connect With Me</h5>
+                    <div class="mt-3">
+                        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <form class="contact-form p-4" style="background: #111; border-radius: 20px;">
+                        <div class="row">
+                            <div class="col-md-6"><input type="text" placeholder="Your Name"></div>
+                            <div class="col-md-6"><input type="email" placeholder="Your Email"></div>
+                        </div>
+                        <input type="text" placeholder="Subject">
+                        <textarea rows="5" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn-hire w-100 py-3 mt-2">Send Message</button>
+                    </form>
+                </div>
             </div>
-            <p class="text-secondary small">© 2024 Developed by Oracle APEX Expert. All rights reserved.</p>
         </div>
+    </section>
+
+    <footer class="py-4 text-center border-top border-secondary">
+        <p class="small text-secondary mb-0">© 2026 Developed with ❤️ by Oracle APEX Specialist</p>
     </footer>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script>
-        // Custom Cursor Logic
-        const cursorDot = document.querySelector("[data-cursor-dot]");
-        const cursorOutline = document.querySelector("[data-cursor-outline]");
-
-        window.addEventListener("mousemove", (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
+        // Cursor Logic
+        const dot = document.querySelector("[data-cursor-dot]");
+        const outline = document.querySelector("[data-cursor-outline]");
+        window.addEventListener("mousemove", e => {
+            dot.style.left = outline.style.left = `${e.clientX}px`;
+            dot.style.top = outline.style.top = `${e.clientY}px`;
         });
 
-        // Hover Effect for Cursor
-        const interactiveElements = document.querySelectorAll('a, button, .project-card');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursorOutline.style.background = 'rgba(248, 0, 0, 0.1)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorOutline.style.background = 'transparent';
-            });
-        });
-
-        // Navbar Scroll Effect
+        // Nav Scroll Effect
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('.custom-nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('nav-scrolled');
-            } else {
-                nav.classList.remove('nav-scrolled');
-            }
+            window.scrollY > 50 ? nav.classList.add('nav-scrolled') : nav.classList.remove('nav-scrolled');
         });
     </script>
 </body>
