@@ -5,200 +5,310 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oracle APEX Developer | Full Stack Portfolio</title>
     
-    <!-- Bootstrap 5, Animate.css, FontAwesome -->
+    <!-- External CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Custom Cursor Style */
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #f80000;
-        }
-        .cursor-outline {
-            width: 30px;
-            height: 30px;
-            border: 2px solid rgba(248, 0, 0, 0.5);
-        }
-        .cursor-dot, .cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            pointer-events: none;
-            transition: transform 0.1s ease-out;
-        }
-
         :root {
             --oracle-red: #f80000;
-            --dark-surface: #121212;
+            --dark-bg: #080808;
             --glass-bg: rgba(255, 255, 255, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Default cursor hide */
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #080808;
+            background-color: var(--dark-bg);
             color: #ffffff;
             overflow-x: hidden;
-            cursor: none; /* Hide default cursor */
         }
 
-        /* Logo Styling */
-        .brand-logo {
+        /* --- Custom Cursor --- */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--oracle-red);
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 10000;
+            pointer-events: none;
+        }
+        .cursor-outline {
             width: 40px;
             height: 40px;
-            background: var(--oracle-red);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            border-radius: 8px;
-            margin-right: 10px;
-            box-shadow: 0 0 15px rgba(248, 0, 0, 0.4);
+            border: 2px solid rgba(248, 0, 0, 0.5);
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            transition: transform 0.15s ease-out;
         }
 
-        /* Hero Section */
-        .hero-section {
-            height: 100vh;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #080808 100%);
+        /* --- Professional Navbar --- */
+        .custom-nav {
+            padding: 20px 0;
+            background: rgba(8, 8, 8, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+        .nav-scrolled {
+            padding: 12px 0;
+            background: #000;
+            border-bottom: 1px solid var(--oracle-red);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+            background: var(--oracle-red);
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
+            border-radius: 8px;
+            font-weight: 800;
+            color: white;
+            margin-right: 12px;
+            box-shadow: 0 0 15px rgba(248, 0, 0, 0.4);
+        }
+        .logo-text {
+            color: white;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 1.2rem;
         }
 
-        .oracle-border {
-            border-left: 5px solid var(--oracle-red);
-            padding-left: 20px;
+        .nav-link {
+            color: rgba(255,255,255,0.7) !important;
+            font-weight: 500;
+            margin: 0 15px;
+            position: relative;
+        }
+        .nav-link:hover { color: var(--oracle-red) !important; }
+        .nav-link::after {
+            content: '';
+            position: absolute; width: 0; height: 2px;
+            bottom: 0; left: 0; background: var(--oracle-red);
+            transition: var(--transition);
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .btn-hire {
+            background: var(--oracle-red);
+            color: white !important;
+            padding: 8px 25px !important;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 2px solid var(--oracle-red);
+            transition: var(--transition);
+        }
+        .btn-hire:hover {
+            background: transparent;
+            box-shadow: 0 0 20px rgba(248, 0, 0, 0.4);
         }
 
-        .transaction-card {
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 80% 20%, rgba(248, 0, 0, 0.05) 0%, transparent 40%);
+        }
+        .oracle-line {
+            border-left: 6px solid var(--oracle-red);
+            padding-left: 25px;
+            margin: 30px 0;
+        }
+
+        /* --- Project Cards --- */
+        .project-card {
             background: var(--glass-bg);
             border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 30px;
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
         }
-
-        .transaction-card:hover {
-            transform: translateY(-10px) scale(1.02);
+        .project-card:hover {
+            transform: translateY(-10px);
             border-color: var(--oracle-red);
-            box-shadow: 0 10px 30px rgba(248, 0, 0, 0.2);
+            background: rgba(255,255,255,0.08);
         }
 
-        .navbar {
-            background: rgba(8, 8, 8, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .btn-oracle {
-            background-color: var(--oracle-red);
-            color: white;
-            padding: 12px 30px;
-            font-weight: bold;
-            transition: 0.3s;
-            border: none;
-        }
-
-        .btn-oracle:hover {
-            background-color: white;
-            color: var(--oracle-red);
-            transform: translateY(-3px);
-        }
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--dark-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--oracle-red); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <!-- Custom Cursor Elements -->
+    <!-- Custom Cursor -->
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-nav">
         <div class="container">
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-                <div class="brand-logo">O</div>
-                <span>APEX_DEV</span>
+            <a class="logo-container" href="#">
+                <div class="logo-icon">O</div>
+                <span class="logo-text">APEX<span class="text-danger">.PRO</span></span>
             </a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-oracle ms-lg-3" href="mailto:your@email.com">Hire Me</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="nav-link btn-hire" href="mailto:contact@example.com">Hire Me</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero">
         <div class="container">
-            <div class="animate__animated animate__zoomIn">
-                <h6 class="text-uppercase tracking-widest text-danger mb-3">Full Stack Oracle Specialist</h6>
-                <h1 class="display-1 fw-bold mb-4">Code. Database. <br><span class="oracle-border text-white">Scale.</span></h1>
-                <p class="lead text-secondary mb-5 mx-auto" style="max-width: 600px;">
-                    আমি তৈরি করি হাই-পারফরম্যান্স ডাটাবেস চালিত ওয়েব অ্যাপ্লিকেশন। ওরাকল অ্যাপেক্স এবং মডার্ন ফ্রন্টএন্ড এর সমন্বয়ে আপনার ব্যবসার সমাধান দিতে আমি প্রস্তুত।
-                </p>
-                <div class="animate__animated animate__fadeInUp animate__delay-1s">
-                    <a href="#projects" class="btn btn-oracle me-3">View Portfolio</a>
-                    <a href="#skills" class="btn btn-outline-light px-4 py-2">Tech Stack</a>
+            <div class="row align-items-center">
+                <div class="col-lg-7 animate__animated animate__fadeInLeft">
+                    <h6 class="text-danger fw-bold text-uppercase mb-3 tracking-widest">Enterprise Web Architect</h6>
+                    <h1 class="display-2 fw-bold mb-4">Building The Future <br> Of <span class="text-danger">Databases.</span></h1>
+                    <div class="oracle-line">
+                        <p class="lead text-secondary">Expert Oracle APEX Developer specializing in high-performance PL/SQL backend systems and modern, responsive frontend interfaces.</p>
+                    </div>
+                    <div class="mt-5">
+                        <a href="#projects" class="btn btn-hire btn-lg me-3">View Projects</a>
+                        <a href="#" class="text-white text-decoration-none fw-bold"><i class="fa-solid fa-play-circle me-2"></i> Watch Demo</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Project Section (Partial Update) -->
+    <!-- Projects Section -->
     <section id="projects" class="py-5">
-        <div class="container text-center mb-5">
-            <h2 class="display-4 fw-bold">My <span class="text-danger">Works</span></h2>
-            <hr class="bg-danger mx-auto" style="width: 100px; height: 3px;">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5">
+                <div>
+                    <h2 class="display-5 fw-bold">Recent <span class="text-danger">Logs</span></h2>
+                    <p class="text-secondary">Explore my latest Oracle APEX implementations</p>
+                </div>
+                <a href="#" class="text-danger fw-bold">View All <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="row g-4">
+                <!-- Card 1 -->
+                <div class="col-md-6">
+                    <div class="project-card p-4">
+                        <div class="d-flex justify-content-between mb-4">
+                            <span class="badge bg-danger">v4.2</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-secondary"></i>
+                        </div>
+                        <h3>E-Commerce Engine</h3>
+                        <p class="text-secondary">Fully automated inventory system with real-time ORDS API integration.</p>
+                        <div class="mt-4">
+                            <span class="small border border-secondary rounded-pill px-3 py-1 me-2">PL/SQL</span>
+                            <span class="small border border-secondary rounded-pill px-3 py-1">APEX 23.2</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-md-6">
+                    <div class="project-card p-4">
+                        <div class="d-flex justify-content-between mb-4">
+                            <span class="badge bg-danger">Live</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-secondary"></i>
+                        </div>
+                        <h3>HRMS Portal</h3>
+                        <p class="text-secondary">Enterprise human resource management with advanced dynamic actions.</p>
+                        <div class="mt-4">
+                            <span class="small border border-secondary rounded-pill px-3 py-1 me-2">Bootstrap</span>
+                            <span class="small border border-secondary rounded-pill px-3 py-1">Oracle 19c</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- ... (Project Carousel remains similar but with new animations) -->
     </section>
+
+    <!-- Footer -->
+    <footer class="py-5 border-top border-secondary mt-5">
+        <div class="container text-center">
+            <div class="fs-3 mb-4">
+                <a href="#" class="text-secondary mx-3 hover-red"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="text-secondary mx-3 hover-red"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="text-secondary mx-3 hover-red"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+            <p class="text-secondary small">© 2024 Developed by Oracle APEX Expert. All rights reserved.</p>
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
-        // Cursor Animation Logic
+        // Custom Cursor Logic
         const cursorDot = document.querySelector("[data-cursor-dot]");
         const cursorOutline = document.querySelector("[data-cursor-outline]");
 
-        window.addEventListener("mousemove", function (e) {
+        window.addEventListener("mousemove", (e) => {
             const posX = e.clientX;
             const posY = e.clientY;
 
             cursorDot.style.left = `${posX}px`;
             cursorDot.style.top = `${posY}px`;
 
-            // Adding a slight lag effect to the outline
             cursorOutline.animate({
                 left: `${posX}px`,
                 top: `${posY}px`
             }, { duration: 500, fill: "forwards" });
         });
 
-        // Scale cursor on hover links
-        const links = document.querySelectorAll('a, button, .transaction-card');
-        links.forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(2)';
-                cursorOutline.style.backgroundColor = 'rgba(248, 0, 0, 0.1)';
+        // Hover Effect for Cursor
+        const interactiveElements = document.querySelectorAll('a, button, .project-card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursorOutline.style.background = 'rgba(248, 0, 0, 0.1)';
             });
-            link.addEventListener('mouseleave', () => {
+            el.addEventListener('mouseleave', () => {
                 cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorOutline.style.backgroundColor = 'transparent';
+                cursorOutline.style.background = 'transparent';
             });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.custom-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
         });
     </script>
 </body>
